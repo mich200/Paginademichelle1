@@ -1,12 +1,12 @@
 <?php  
 // Datos de conexión a la base de datos  
 $servidor = "localhost";  
-$usuario = "usuario";  
-$contraseña = "contraseña";   
+$usuario = "root";  
+$password = "";   
 $base_datos = "pagina_login_registro";  
 
 // Crear conexión  
-$connection = mysqli_connect($servidor, $usuario, $contraseña, $base_datos);  
+$connection = mysqli_connect($servidor, $usuario, $password, $base_datos);  
 
 // Comprobar conexión  
 if (!$connection) {  
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contraseña_input = htmlspecialchars(trim($_POST['contraseña']));  
 
     // Verificar usuario y contraseña  
-    $stmt = $connection->prepare("SELECT contraseña FROM usuarios WHERE correo = ?");  
+    $stmt = $connection->prepare("SELECT contraseña FROM usuario WHERE correo = ?");  
     $stmt->bind_param("s", $usuario_input);  
     $stmt->execute();  
     $stmt->bind_result($contraseña_hashed);  

@@ -1,8 +1,8 @@
 <?php  
 // Datos de conexión  
 $servidor = "localhost";   
-$usuario = "nombre";  
-$contraseña = "contraseña";   
+$usuario = "root";  
+$contraseña = "";   
 $base_datos = "pagina_login_registro";  
 
 // Crear conexión  
@@ -21,7 +21,7 @@ $contraseña = isset($_POST['contraseña']) ? trim($_POST['contraseña']) : '';
 
 if (!empty($nombre) && !empty($apellido) && !empty($correo) && !empty($contraseña)) {  
     // Validar si el correo ya existe en la base de datos  
-    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE correo = ?");  
+    $stmt = $conn->prepare("SELECT * FROM usuario WHERE correo = ?");  
     $stmt->bind_param("s", $correo);  
     $stmt->execute();  
     $result = $stmt->get_result();  
